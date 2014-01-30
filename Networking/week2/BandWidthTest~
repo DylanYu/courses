@@ -1,0 +1,5 @@
+Location Up Down Ping Distance PropagationDelay BandwidthDelay(RxD)
+Suzhou 7.87Mbps  0.55Mbps 31ms 100km 0.5ms 3.935Kb
+Urumqi 7.37 0.51 130ms 3800km 19ms 140.03Kb
+Oral 7.12 0.44 254ms 4750km 23.75ms 169.1Kb
+York  2.63 0.33 325ms 8000km 40ms  105.2Kb
