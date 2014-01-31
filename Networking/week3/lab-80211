@@ -1,0 +1,31 @@
+Using provided trace:
+
+Typical Noise: -90 dBm
+Max Signal: -44 dBm
+Min Signal: -69 dBm
+
+So the min SNR 29 dB and max SNR is 46 dB, max is roughly 100 times of min.
+
+For different kinds of frames (beacon, ack, data), the trasmission rate 
+varies (1, 24, 36, 54 Mb/s ... Typically Management (broadcast/beacon) < 
+Control (ack) < Data.
+
+
+There are:
+1783 Data frames and the most common subtype is 0,
+1391 Control frames (ack) and the most common subtype is 13,
+557 Management frames (beacon) and the most common subtype is 8.
+
+353 data frames are retransmitted, 1430 are not. So the retransmissions 
+over the number of original transmissions is 0.247.
+
+16 frames from client to AP indicates entering power saving 
+state, with 822 frames from client to AP in total, the fraction is 1.95%.
+
+The SSID of the main AP is djw. Beacon frame interval is 0.102400 s.
+Date rates supported by AP is 1/2/5.5/11(B)/18/24//36/54(M).
+Beacon frame transmisson rate is 1 Mbps.
+
+Type/Subtype of Association Request / Response is 0 0 / 0 1,
+of Probe Request / Response is 0 4 / 0 5.
+
