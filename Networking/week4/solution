@@ -1,0 +1,32 @@
+1.  What are the IP addresses of your computer and the remote server? 
+
+...
+
+2.  Does the Total Length field include the IP header plus IP payload, or just the IP payload? 
+
+IP headeris included.
+
+3.  How does the value of the Identification field change or stay the same for different packets? For 
+instance, does it hold the same value for all packets in a TCP connection or does it differ for each 
+packet? Is it the same in both directions? Can you see any pattern if the value does change? 
+
+Identification field differs for each packet. Not same in both directions.
+The value is increased by one for each packet roughly, in one direction.
+
+4.  What is the initial value of the TTL field for packets sent from your computer? Is it the maximum 
+possible value, or some lower value?  
+
+64. Not the maximum possible value (256).
+
+5.  How can you tell from looking at a packet that it has not been fragmented? Most often IP pack-
+ets in normal operation are not fragmented. But the receiver must have a way to be sure. Hint: 
+you may need to read your text to confirm a guess. 
+
+From the More Fragments bit.
+
+6.  What is the length of the IP Header and how is this encoded in the header length field? Hint: no-
+tice that only 4 bits are used for this field, as the version takes up the other 4 bits of the byte. 
+You may guess and check your text. 
+
+The length of IP header is 20 bytes. The IHL field is encoded by 32 bits (4 bytes) as a unit, so the value is 5.
+
