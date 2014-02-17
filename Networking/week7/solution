@@ -1,0 +1,46 @@
+1.Figure of the TCP segment:
+32bit per line
++++++ ++++ ++++ ++++ ++++ ++++ ++++ +++++
++    Source Port    +     Dest Port     +
++            Sequence Number            +
++               Ack Number              +
++HL  +   N CEUA PRSF+    Window Size    +
++    Check Sum      +0    0    0    0   +
++   Nop   +   Nop   +  Kind   + Length  +
++           Timestamp value             +
++         Timestamp echo reply          +
+++++ ++++ ++++ ++++  ++++ ++++ ++++ +++++
+The last 10 bytes (80 bits) are optional Timestamps.
+
+2.Time sequence diagram:
+                (seq, ack, win, flags)
+                Me                        Dest
+0.000000        0,  , 14600, SYN          
+0.278229                                  0, 1, 5782,  SYN&ACK
+0.278264        1, 1, 14656,
+0.278332        1, 1, 14656,[http get]
+0.556413                                  1, 157, 6912, ACK
+....
+48.687496                                 1020841, 157, 6912, PSH&ACK,[http ok)
+48.687507       157, 1022957, 86912, ACK
+48.687905       157, 1022957, 86912, FIN&ACK
+48.965579                                 1022957, 158, 6912, FIN&ACK
+48.965611       158, 1022958, 86912, ACK
+
+The round-trip time is ~0.278s.
+
+3.1 What TCP Options are carried on the SYN packets for your trace?
+Maximym segment size, TCP SACK Permitted, Timestamps, NOP, Window scale
+
+3.2 The rough download rate is 25kb/s, upload rate is 1kb/s
+
+
+IMPORTANT:
+When there're some delay (or lost) fragments, the receiver will send ACK with optional SACK.
+For example, received fragments are 12_456, with fragment 3 missing, then the receiver will send ACK of 3, with SACK [4, 7).
+If delay (or lost) fragments continues to occur, e.g, 12_456_89, then the receiver will send ACK of 3, with SACK [4, 7) and [8, 10).
+The sender understands that there's something wrong from these ACKs, and starts to retransmit fragment 3 (and also fragment 7 later). After receiver receives delayed fragment 3, now we have 123456_89, then it will send ACK of 7, with SACK [8, 10).
+So the conclusion is:
+The ACK represents receiver's next expected fragment. The SACK is an additional information for sender to understand where the missing fragments locate.
+e.g., with ACK 4 and SACK [6, 9), sender should retransmit frgament 4 and 5.
+
