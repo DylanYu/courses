@@ -1,0 +1,17 @@
+1. What is the format of a header line?
+Format:
+Header Name:|(Space)|Header Content|\r\n|Next Header
+e.g., Host: www.xxx.com\r\nUser-Agent: Mozilla/5.0 (X11; Ubuntu;***) Firefox/16.0\r\n
+
+2. What headers are used to indicate the kind and length of content that is returned in a response? 
+Content-Length and Content-Type
+
+3. What is the name of the header the browser sends to let the server work out whether to send fresh content? 
+If-None-Match: "fjwiefheuifhe-734rui-f843hr34i"\r\n
+and
+If-Modified-Since: Mon, 16 Jul 2012 04:00:09 GMT\r\n
+
+4. Where exactly does the timestamp value carried by the header come from?
+When first request the picture, the server responsed header Last-Modified to indicate the time.
+At the second request, sender include this time value as content of header If-Modified-Since to ask server
+whether the picture is modified since that time.
