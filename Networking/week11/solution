@@ -1,0 +1,62 @@
+1. What is the Content-Type for a record containing “Application Data”?
+    23i (http maybe).
+
+2. What version constant is used in your trace, and which version of TLS does it represent?
+    0x0301 (TLS 1.0)
+
+3. Does the Length cover the Record Layer header as well as payload, or only the payload?
+   Only payload. 
+   
+
+Hello Messages
+--------------
+
+1. How long in bytes is the random data in the Hellos? Both the Client and Server 
+include this random data (a nonce) to allow the establishment of session keys.
+    32 bytes.
+
+2. How long in bytes is the session identifier sent by the server? This identifier 
+allows later resumption of the session with an abbreviated handshake when both 
+the client and server indicate the same value. In our case, the client likely 
+sent no session ID as there was nothing to resume.
+    32 bytes.
+
+3. What Cipher method is chosen by the Server? Give its name and value. The 
+Client will list the different cipher methods it supports, and the Server 
+will pick one of these methods to use.
+    0xc011. Cipher Suite: TLS_ECDHE_RSA_WITH_RC4_128_SHA (0xc011)
+
+Certificate Messages
+--------------------
+
+4. Who sends the Certificate, the client, the server, or both? A certificate is sent by one party to let
+the other party authenticate that it is who it claims to be. Based on this usage, you should be
+able to guess who sends the certificate and check the messages in your trace.
+    The server.
+
+Client Key Exchange and Change Cipher Messages
+----------------------------------------------
+
+5. At the Record Layer, what Content-Type values are used to indicate each of these messages? Say
+whether the values are the same or different than that used for the Hello and Certificate mes-
+sages. Note that this question is asking you to look at the Record Layer and not an inner Hand-
+shake Protocol.
+    Same as Hello Messages. Content Type :22 (Handshake)
+
+6. Who sends the Change Cipher Spec message, the client, the server, or both?
+    Both.
+
+7. What are the contents carried inside the Change Cipher Spec message? Look past the Content-
+Type and other headers to see the message itself.
+    01.
+
+Alert Message
+-------------
+
+8. At the Record Layer, what Content-Type value is used to signal an alert?
+    21 (Alert).
+
+9. Tell us whether the contents of the alert are encrypted or sent in the clear? To check this, see
+whether you can read the contents of the alert to see what kind of alert has been sent.
+    Encrypted.
+
